@@ -1,304 +1,455 @@
 <html>
 <head>
-    <title>Mango的博丽神社 | 一只巨大的Mango</title>
+    <title>Mango的幻想乡小窝 | 东方Project主题</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入网络二次元常用字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #d94877; /* 博丽红 */
-            --secondary-color: #4169e1; /* 魔理沙蓝 */
-            --accent-color: #ffd700; /* 灵梦蝴蝶结金 */
-            --bg-color: #f8f0f3; /* 浅粉背景 */
-            --card-color: rgba(255, 255, 255, 0.9); /* 半透明白色卡片 */
+            --touhou-red: #e63946; /* 灵梦红（高饱和） */
+            --touhou-blue: #457b9d; /* 魔理沙蓝 */
+            --touhou-gold: #ffb703; /* 装饰金 */
+            --touhou-pink: #f1faee; /* 浅粉背景 */
+            --card-bg: rgba(255, 255, 255, 0.95); /* 卡片背景 */
+            --border-color: #ffcad4; /* 边框粉 */
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Meiryo, 'MS PGothic', sans-serif;
+            /* 主流二次元字体组合：中文圆润+手绘感 */
+            font-family: 'Noto Sans SC', 'ZCOOL KuaiLe', sans-serif;
+        }
+        
+        /* 页面滚动条美化（二次元模板必备） */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--touhou-pink);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--touhou-red);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--touhou-blue);
         }
         
         body {
-            background-color: var(--bg-color);
-            /* 东方风格背景：樱花点阵 */
+            background-color: var(--touhou-pink);
+            /* 网络模板常见：东方场景+点阵叠加背景 */
             background-image: 
-                radial-gradient(var(--primary-color) 1px, transparent 1px),
-                radial-gradient(var(--secondary-color) 1px, var(--bg-color) 1px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
+                url('https://picsum.photos/seed/touhou-bg/1920/1080'),
+                radial-gradient(var(--touhou-red) 0.8px, transparent 0.8px),
+                radial-gradient(var(--touhou-blue) 0.8px, var(--touhou-pink) 0.8px);
+            background-size: cover, 30px 30px, 30px 30px;
+            background-position: center center, 0 0, 15px 15px;
+            background-attachment: fixed;
             color: #333;
             min-height: 100vh;
+            padding: 20px 0;
         }
         
-        /* 东方角色背景装饰（半透明） */
-        .touhou-bg {
+        /* 半透明遮罩，让背景不抢主体 */
+        body::after {
+            content: "";
             position: fixed;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            z-index: -1;
-            opacity: 0.1;
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-        }
-        
-        .touhou-char {
-            width: 300px;
-            height: 500px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-        
-        /* 主要容器 */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px;
-            position: relative;
-        }
-        
-        /* 标题区域 */
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--card-color);
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 5px 15px rgba(217, 72, 119, 0.2);
-        }
-        
-        .title-decoration {
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            margin: 15px 0;
-            font-size: 2.8rem;
-            text-shadow: 2px 2px 0px rgba(255, 215, 0, 0.3);
-        }
-        
-        /* 头像区域 */
-        .avatar-container {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 20px;
-        }
-        
-        .avatar {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            border: 5px double var(--accent-color);
-            background-image: url('https://picsum.photos/seed/mango/360/360');
+            background-color: rgba(241, 250, 238, 0.7);
+            z-index: -1;
+        }
+        
+        /* 主容器：网络模板常用居中+最大宽度限制 */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 顶部banner（二次元模板标志性元素） */
+        .top-banner {
+            width: 100%;
+            height: 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.15);
+            position: relative;
+        }
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-image: url('https://picsum.photos/seed/touhou-banner/1000/200');
             background-size: cover;
             background-position: center;
         }
-        
-        /* 东方风格装饰 */
-        .avatar-decoration {
+        .banner-overlay {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            top: -10px;
-            right: -10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.5));
             color: white;
-            font-weight: bold;
+        }
+        .banner-title {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .banner-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
-        /* 内容区块 */
-        .section {
-            background: var(--card-color);
+        /* 内容区：左右分栏（网络二次元模板经典布局） */
+        .content-wrapper {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        /* 侧边栏（个人信息+东方元素） */
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+        }
+        .profile-card {
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 30px;
-            border-left: 6px solid var(--secondary-color);
-            box-shadow: 0 3px 10px rgba(65, 105, 225, 0.15);
+            border: 2px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 4px double var(--touhou-gold);
+            background-image: url('https://picsum.photos/seed/mango-touhou/300/300');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+        }
+        .profile-name {
+            color: var(--touhou-red);
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        .profile-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .profile-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: var(--touhou-blue);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0 5px 8px;
         }
         
-        .section-title {
-            color: var(--secondary-color);
-            font-size: 1.8rem;
+        /* 东方角色挂件（侧边栏装饰） */
+        .touhou-widget {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .widget-title {
+            color: var(--touhou-blue);
+            font-size: 1.3rem;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            gap: 8px;
         }
-        
-        .section-title::before {
+        .widget-title::before {
             content: "✿";
-            color: var(--primary-color);
-            margin-right: 10px;
+            color: var(--touhou-red);
         }
-        
-        /* 兴趣列表 */
-        .interest-list {
-            list-style: none;
-        }
-        
-        .interest-list li {
-            margin: 12px 0;
-            padding-left: 30px;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-        
-        .interest-list li:hover {
-            transform: translateX(5px);
-        }
-        
-        .interest-list li::before {
-            content: "☯";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-        }
-        
-        /* 东方角色展示区 */
-        .touhou-showcase {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .touhou-card {
-            width: 150px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 2px solid var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .touhou-card:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-        
-        .touhou-card img {
+        .widget-char {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
         }
-        
-        .touhou-card p {
-            text-align: center;
-            padding: 8px;
-            background-color: var(--secondary-color);
-            color: white;
+        .widget-char-desc {
             font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
         }
         
-        /* 联系区域 */
-        .contact {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(217, 72, 119, 0.1), rgba(65, 105, 225, 0.1));
+        /* 主内容区（卡片式布局） */
+        .main-content {
+            flex: 2;
+            min-width: 280px;
+        }
+        .content-card {
+            background: var(--card-bg);
             border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* 卡片hover动效（网络模板常见） */
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(230, 57, 70, 0.2);
+        }
+        .card-title {
+            color: var(--touhou-red);
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px dashed var(--border-color);
         }
         
-        .contact a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin: 0 10px;
-            padding: 5px 10px;
-            border-bottom: 2px dotted var(--primary-color);
+        /* 兴趣列表（带东方元素装饰） */
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .interest-item {
+            background-color: rgba(69, 123, 157, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 3px solid var(--touhou-blue);
             transition: all 0.3s ease;
         }
-        
-        .contact a:hover {
-            color: var(--primary-color);
-            background-color: rgba(255, 215, 0, 0.1);
+        .interest-item:hover {
+            background-color: rgba(69, 123, 157, 0.2);
+            transform: scale(1.05);
+        }
+        .interest-icon {
+            color: var(--touhou-red);
+            margin-right: 5px;
         }
         
-        /* 响应式设计 */
+        /* 东方角色展示（网络模板卡片式排列） */
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .char-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .char-card:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 8px 15px rgba(255, 183, 3, 0.2);
+        }
+        .char-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-image: url('https://picsum.photos/seed/touhou-char/300/400');
+            background-size: cover;
+            background-position: center;
+        }
+        .char-name {
+            padding: 10px;
+            text-align: center;
+            color: var(--touhou-blue);
+            font-weight: bold;
+            background-color: rgba(255, 202, 212, 0.2);
+        }
+        
+        /* 联系卡片（简洁明了） */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background-color: rgba(230, 57, 70, 0.05);
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        .contact-link:hover {
+            background-color: rgba(230, 57, 70, 0.1);
+            transform: translateX(5px);
+        }
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--touhou-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 底部装饰条（二次元模板收尾元素） */
+        .footer-decoration {
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--touhou-red), var(--touhou-gold), var(--touhou-blue));
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        /* 响应式适配 */
         @media (max-width: 768px) {
-            .touhou-bg {
-                display: none;
+            .top-banner {
+                height: 160px;
             }
-            
-            .touhou-showcase {
-                justify-content: center;
+            .banner-title {
+                font-size: 1.6rem;
+            }
+            .char-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .top-banner {
+                height: 120px;
+            }
+            .banner-title {
+                font-size: 1.3rem;
+            }
+            .banner-subtitle {
+                font-size: 0.9rem;
+            }
+            .char-grid {
+                grid-template-columns: 1fr;
+            }
+            .interest-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <!-- 背景东方角色装饰 -->
-    <div class="touhou-bg">
-        <div class="touhou-char" style="background-image: url('https://picsum.photos/seed/reimu/300/600');"></div>
-        <div class="touhou-char" style="background-image: url('https://picsum.photos/seed/marisa/300/600');"></div>
-    </div>
-
-    <div class="container">
-        <header>
-            <div class="title-decoration">～幻想乡欢迎您～</div>
-            <div class="avatar-container">
-                <div class="avatar"></div>
-                <div class="avatar-decoration">✿</div>
-            </div>
-            <h1>Mango的博丽神社</h1>
-            <p>这里是热爱东方Project的Mango的个人小窝～</p>
-        </header>
-
-        <div class="section">
-            <h2 class="section-title">关于我</h2>
-            <p>我是Mango，一名大学生，同时也是东方Project的忠实爱好者！</p>
-            <p>平时喜欢研究前端开发，尤其热衷于制作充满二次元风格的网页。</p>
-            <p>最喜欢的角色是博丽灵梦和雾雨魔理沙，梦想是有一天能去幻想乡看看～</p>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">我的兴趣</h2>
-            <ul class="interest-list">
-                <li>网页开发与前端设计</li>
-                <li>东方Project系列游戏与音乐</li>
-                <li>收集东方Project同人作品</li>
-                <li>绘制二次元插画</li>
-                <li>研究各种奇奇怪怪的技术</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">喜欢的东方角色</h2>
-            <div class="touhou-showcase">
-                <div class="touhou-card">
-                    <img src="https://picsum.photos/seed/reimu2/300/400" alt="博丽灵梦">
-                    <p>博丽灵梦</p>
-                </div>
-                <div class="touhou-card">
-                    <img src="https://picsum.photos/seed/marisa2/300/400" alt="雾雨魔理沙">
-                    <p>雾雨魔理沙</p>
-                </div>
-                <div class="touhou-card">
-                    <img src="https://picsum.photos/seed/sakuya/300/400" alt="十六夜咲夜">
-                    <p>十六夜咲夜</p>
-                </div>
-                <div class="touhou-card">
-                    <img src="https://picsum.photos/seed/remilia/300/400" alt="蕾米莉亚·斯卡雷特">
-                    <p>蕾米莉亚·斯卡雷特</p>
-                </div>
+    <div class="main-container">
+        <!-- 顶部Banner（二次元模板核心元素） -->
+        <div class="top-banner">
+            <div class="banner-img"></div>
+            <div class="banner-overlay">
+                <div class="banner-title">Mango的幻想乡小窝</div>
+                <div class="banner-subtitle">东方Project同好聚集地 ✿ 前端开发学习记录</div>
             </div>
         </div>
-
-        <div class="section contact">
-            <h2 class="section-title">联系我</h2>
-            <p>
-                <a href="https://mangokawaii.github.io/" target="_blank">个人主页</a>
-                <a href="mailto:1002936887dxh@gmail.com">邮箱联系</a>
-            </p>
-            <p style="margin-top: 15px; color: var(--primary-color);">欢迎各位东方同好交流～</p>
+        
+        <!-- 内容区：左右分栏 -->
+        <div class="content-wrapper">
+            <!-- 侧边栏 -->
+            <div class="sidebar">
+                <!-- 个人信息卡片 -->
+                <div class="profile-card">
+                    <div class="profile-avatar"></div>
+                    <div class="profile-name">Mango</div>
+                    <div class="profile-desc">热爱东方的前端小菜鸡 ✨</div>
+                    <div class="profile-tags">
+                        <span class="profile-tag">东方同好</span>
+                        <span class="profile-tag">前端开发</span>
+                        <span class="profile-tag">大学生</span>
+                    </div>
+                </div>
+                
+                <!-- 东方角色挂件 -->
+                <div class="touhou-widget">
+                    <h3 class="widget-title">今日推荐角色</h3>
+                    <img src="https://picsum.photos/seed/reimu-main/300/200" alt="博丽灵梦" class="widget-char">
+                    <p class="widget-char-desc">博丽灵梦 · 幻想乡的巫女，守护着博丽神社，性格直率洒脱，拥有强大的灵力～</p>
+                </div>
+            </div>
+            
+            <!-- 主内容区 -->
+            <div class="main-content">
+                <!-- 关于我卡片 -->
+                <div class="content-card">
+                    <h2 class="card-title">关于我</h2>
+                    <p>大家好呀～ 我是Mango，一名正在学习前端开发的大学生，同时也是重度东方Project爱好者！</p>
+                    <p>接触东方是因为一次偶然的同人音乐推荐，从此就深陷幻想乡的世界无法自拔～ 最喜欢的角色是博丽灵梦和雾雨魔理沙，收集了很多同人漫画和音乐CD。</p>
+                    <p>目前正在努力学习HTML、CSS、JavaScript，希望未来能做出更多充满二次元风格的网页，也期待能和更多东方同好交流！</p>
+                </div>
+                
+                <!-- 我的兴趣卡片 -->
+                <div class="content-card">
+                    <h2 class="card-title">我的兴趣</h2>
+                    <div class="interest-grid">
+                        <div class="interest-item"><span class="interest-icon">🎮</span> 东方系列游戏</div>
+                        <div class="interest-item"><span class="interest-icon">🎵</span> 东方同人音乐</div>
+                        <div class="interest-item"><span class="interest-icon">💻</span> 前端开发</div>
+                        <div class="interest-item"><span class="interest-icon">📖</span> 二次元漫画</div>
+                        <div class="interest-item"><span class="interest-icon">🎨</span> 同人插画</div>
+                        <div class="interest-item"><span class="interest-icon">🔧</span> 技术折腾</div>
+                    </div>
+                </div>
+                
+                <!-- 喜欢的东方角色卡片 -->
+                <div class="content-card">
+                    <h2 class="card-title">喜欢的东方角色</h2>
+                    <div class="char-grid">
+                        <div class="char-card">
+                            <div class="char-img" style="background-image: url('https://picsum.photos/seed/reimu-char/300/400');"></div>
+                            <div class="char-name">博丽灵梦</div>
+                        </div>
+                        <div class="char-card">
+                            <div class="char-img" style="background-image: url('https://picsum.photos/seed/marisa-char/300/400');"></div>
+                            <div class="char-name">雾雨魔理沙</div>
+                        </div>
+                        <div class="char-card">
+                            <div class="char-img" style="background-image: url('https://picsum.photos/seed/sakuya-char/300/400');"></div>
+                            <div class="char-name">十六夜咲夜</div>
+                        </div>
+                        <div class="char-card">
+                            <div class="char-img" style="background-image: url('https://picsum.photos/seed/yuyuko-char/300/400');"></div>
+                            <div class="char-name">西行寺幽幽子</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 联系我卡片 -->
+                <div class="content-card">
+                    <h2 class="card-title">联系我</h2>
+                    <div class="contact-links">
+                        <a href="https://mangokawaii.github.io/" target="_blank" class="contact-link">
+                            <div class="contact-icon">🌐</div>
+                            <div>个人主页</div>
+                        </a>
+                        <a href="mailto:1002936887dxh@gmail.com" class="contact-link">
+                            <div class="contact-icon">📧</div>
+                            <div>邮箱联系</div>
+                        </a>
+                    </div>
+                    <p style="margin-top: 20px; color: var(--touhou-blue); text-align: center;">欢迎东方同好来找我交流呀～ 幻想乡的大门永远敞开！</p>
+                </div>
+            </div>
         </div>
+        
+        <!-- 底部装饰条 -->
+        <div class="footer-decoration"></div>
     </div>
 </body>
 </html>
